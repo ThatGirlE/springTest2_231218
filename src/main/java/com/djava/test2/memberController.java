@@ -86,5 +86,31 @@ public class memberController {
 		
 		return "memberNumOk";
 	}
-	
+	@RequestMapping(value="/memberCheck")
+	public String memberCheck() {
+		
+		return "memberCheck";
+	}
+	@RequestMapping(value="/memberCheckOk")
+	public String memberCheckOk(HttpServletRequest request, Model model) {
+		
+		String cid = request.getParameter("checkId");
+		
+		if(cid.equals("tiger")) { // 문자열은 equals
+			return "redirect:memberCheckGood"; // redirect 서버에 새로운 요청을 넣는것, redirect 없으면 jsp가 있으니까 실행이 됨
+		}else {
+			return "redirect:memberCheckNg";
+		}
+		
+		
+	}
+	@RequestMapping(value="/memberCheckGood") // redirect 사용시 오류나니 새로 requestmapping 설정 
+	public String memberCheckGood() {
+		return "memberCheckGood";
+	}
+	@RequestMapping(value="/memberCheckNg")
+	public String memberCheckNg() {
+		return "memberCheckNg";
+	}
+
 }
